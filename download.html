@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Download — ExeReversDowloaders</title>
+<title>ExeReversDowloaders — Download</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
@@ -11,7 +11,6 @@
 <body>
 <canvas id="particles"></canvas>
 <div class="scanlines"></div>
-
 <div class="page-wrapper">
   <header class="site-header">
     <div class="logo-wrap">
@@ -22,47 +21,33 @@
     </div>
     <div class="header-badge">SECURE VAULT</div>
   </header>
-
   <section class="hero" style="padding-top:60px">
-    <div class="hero-glow" style="background:radial-gradient(ellipse 600px 400px at 50% 50%, rgba(0,100,255,.15) 0%, transparent 70%)"></div>
+    <div class="hero-glow" style="background:radial-gradient(ellipse 600px 400px at 50% 50%,rgba(0,100,255,.15) 0%,transparent 70%)"></div>
     <div class="hero-content" style="max-width:640px">
-      <div class="step-badge" style="background:rgba(0,200,100,.1);border-color:rgba(0,200,100,.3);color:#00c864">✅ AKSES DIBERIKAN</div>
+      <div class="step-badge" style="background:rgba(0,200,100,.1);border-color:rgba(0,200,100,.3);color:#00c864" data-i18n="access_granted"></div>
       <h1 class="hero-title" style="font-size:clamp(1.8rem,4vw,2.8rem)">
-        FILE <span class="blue-glow">SIAP</span> DIUNDUH
+        FILE <span class="blue-glow">READY</span>
       </h1>
-
       <div class="file-card" id="fileCard">
         <div class="file-icon">📦</div>
         <div class="file-info">
-          <div class="file-title" id="fileTitle">Memuat...</div>
+          <div class="file-title" id="fileTitle" data-i18n="loading"></div>
           <div class="file-meta" id="fileMeta">—</div>
         </div>
       </div>
-
       <button class="btn-download" id="dlBtn" onclick="startDownload()" disabled>
-        <span>⬇</span> DOWNLOAD SEKARANG
+        <span>⬇</span> <span data-i18n="btn_download"></span>
       </button>
-
       <div class="dl-progress" id="dlProgress" style="display:none">
         <div class="timer-bar"><div class="timer-fill" id="dlFill" style="width:0%"></div></div>
-        <span class="timer-text">Menyiapkan file...</span>
+        <span class="timer-text" id="dlText" data-i18n="dl_preparing"></span>
       </div>
-
       <div class="back-link">
-        <a href="index.html">← Kembali ke Halaman Utama</a>
+        <a href="index.html" data-i18n="back"></a>
       </div>
     </div>
   </section>
 </div>
-
-<script>
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('keydown', e => {
-  if (e.key === 'F12' || (e.ctrlKey && ['u','s','i'].includes(e.key.toLowerCase())) || (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))) {
-    e.preventDefault(); return false;
-  }
-});
-</script>
 <script src="assets/app.js"></script>
 </body>
 </html>

@@ -442,13 +442,21 @@ window.uploadFile = async function(){
     if (upText) upText.textContent = 'Menyimpan metadata...';
 
     // Simpan ke table files
-    var dbRes = await supaFetch('/rest/v1/files', {
+    var dbRes = await fetch(CFG.supa_url + '/rest/v1/files', {
       method: 'POST',
-      headers: { 'Prefer': 'return=representation' },
+      headers: {
+        'apikey': CFG.supa_service,
+        'Authorization': 'Bearer ' + CFG.supa_service,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      },
       body: JSON.stringify({ title: title, password_hash: hash, file_url: fileName })
-    }, true);
+    });
 
-    if (!dbRes.ok) throw new Error('Simpan database gagal');
+    if (!dbRes.ok) {
+      var dbErr = await dbRes.text();
+      throw new Error('Simpan database gagal: ' + dbRes.status + ' — ' + dbErr);
+    }
     if (fill) fill.style.width = '100%';
     if (upText) upText.textContent = 'Selesai!';
 

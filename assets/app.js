@@ -255,20 +255,16 @@ window.startDownload = async function(){
   }, 200);
 
   try {
-    // Get signed URL dari Supabase storage
-    var res = await supaFetch('/storage/v1/object/sign/' + CFG.bucket + '/' + encodeURIComponent(dlFile.url), {
-      method: 'POST',
-      body: JSON.stringify({ expiresIn: 60 })
-    });
-    var data = await res.json();
+    // Bucket public — langsung pakai public URL tanpa signed URL
+    var publicUrl = CFG.supa_url + '/storage/v1/object/public/' + CFG.bucket + '/' + dlFile.url;
+
     clearInterval(iv);
     if (fill) fill.style.width = '100%';
 
-    var signedUrl = data.signedURL ? (CFG.supa_url + data.signedURL) : dlFile.url;
-
     setTimeout(function(){
       var a = document.createElement('a');
-      a.href = signedUrl;
+      a.href = publicUrl;
+      a.target = '_blank';
       a.download = dlFile.title || 'file';
       a.style.display = 'none';
       document.body.appendChild(a);
@@ -279,8 +275,8 @@ window.startDownload = async function(){
     }, 400);
   } catch(e) {
     clearInterval(iv);
-    // Fallback: langsung buka URL
-    window.open(dlFile.url, '_blank');
+    var fallback = CFG.supa_url + '/storage/v1/object/public/' + CFG.bucket + '/' + dlFile.url;
+    window.open(fallback, '_blank');
     if (dlBtn) dlBtn.disabled = false;
     if (prog) prog.style.display = 'none';
   }

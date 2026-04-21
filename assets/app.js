@@ -421,13 +421,23 @@ window.uploadFile = async function(){
     if (upText) upText.textContent = 'Uploading file...';
     if (fill) fill.style.width = '30%';
     var fileName = Date.now() + '_' + selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-    var upRes = await supaFetch('/storage/v1/object/' + CFG.bucket + '/' + fileName, {
-      method: 'POST',
-      headers: { 'Content-Type': selectedFile.type || 'application/octet-stream' },
-      body: selectedFile
-    }, true);
 
-    if (!upRes.ok) throw new Error('Upload storage gagal: ' + upRes.status);
+    // Pakai fetch langsung — jangan campur Content-Type json dengan file
+    var upRes = await fetch(CFG.supa_url + '/storage/v1/object/' + CFG.bucket + '/' + fileName, {
+      method: 'POST',
+      headers: {
+        'apikey': CFG.supa_service,
+        'Authorization': 'Bearer ' + CFG.supa_service,
+        'Content-Type': selectedFile.type || 'application/octet-stream',
+        'x-upsert': 'true'
+      },
+      body: selectedFile
+    });
+
+    if (!upRes.ok) {
+      var errBody = await upRes.text();
+      throw new Error('Upload storage gagal: ' + upRes.status + ' — ' + errBody);
+    }
     if (fill) fill.style.width = '70%';
     if (upText) upText.textContent = 'Menyimpan metadata...';
 

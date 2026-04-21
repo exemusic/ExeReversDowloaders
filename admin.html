@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel — ExeReversDowloaders</title>
+<title>Admin — ExeReversDowloaders</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
@@ -11,8 +11,6 @@
 <body>
 <canvas id="particles"></canvas>
 <div class="scanlines"></div>
-
-<!-- Admin Login Gate -->
 <div id="adminGate" class="admin-gate">
   <div class="admin-gate-box">
     <div class="logo-wrap" style="justify-content:center;margin-bottom:1.5rem">
@@ -21,123 +19,95 @@
     </div>
     <div class="sub-header" style="justify-content:center;margin-bottom:1rem">
       <div class="pulse-dot" style="background:var(--red)"></div>
-      ADMIN ACCESS ONLY
+      <span data-i18n="admin_only"></span>
     </div>
     <div class="pw-input-wrap">
-      <input type="password" id="adminPw" class="pw-input" placeholder="Admin password..." autocomplete="off">
+      <input type="password" id="adminPw" class="pw-input" data-i18n="admin_pw_placeholder" autocomplete="off">
       <button class="pw-toggle" onclick="toggleAdminPw()">👁</button>
     </div>
-    <div id="adminErr" style="display:none;color:var(--red);font-size:.85rem;margin-top:.5rem;text-align:center">Password salah!</div>
+    <div id="adminErr" style="display:none;color:var(--red);font-size:.85rem;margin-top:.5rem;text-align:center"></div>
     <button class="btn-verified" style="margin-top:1rem;opacity:1;cursor:pointer;width:100%" onclick="adminLogin()">
-      🔐 Masuk ke Admin Panel
+      <span data-i18n="admin_login_btn"></span>
     </button>
   </div>
 </div>
-
-<!-- Admin Dashboard -->
 <div id="adminPanel" class="page-wrapper" style="display:none">
   <header class="site-header">
     <div class="logo-wrap">
       <span class="logo-icon">⬡</span>
       <span class="logo-text">ExeRevers<span class="accent">DL</span> <span style="font-size:.7rem;color:var(--red)">ADMIN</span></span>
     </div>
-    <button onclick="adminLogout()" style="background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);color:var(--red);padding:.4rem 1rem;border-radius:6px;cursor:pointer;font-family:inherit">Logout</button>
+    <button onclick="adminLogout()" style="background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);color:var(--red);padding:.4rem 1rem;border-radius:6px;cursor:pointer;font-family:inherit" data-i18n="logout"></button>
   </header>
-
   <div class="admin-content">
-
-    <!-- Stats -->
-    <div class="stats-row" id="statsRow">
+    <div class="stats-row">
       <div class="stat-card">
         <div class="stat-num" id="totalFiles">—</div>
-        <div class="stat-label">Total File</div>
+        <div class="stat-label" data-i18n="total_files"></div>
       </div>
       <div class="stat-card">
         <div class="stat-num" style="color:var(--blue)">🔒</div>
-        <div class="stat-label">Password Protected</div>
+        <div class="stat-label" data-i18n="pw_protected"></div>
       </div>
       <div class="stat-card">
         <div class="stat-num" style="color:#00c864">✓</div>
-        <div class="stat-label">Supabase Connected</div>
+        <div class="stat-label" data-i18n="connected"></div>
       </div>
     </div>
-
-    <!-- Upload Form -->
     <div class="admin-card">
-      <div class="admin-card-header">
-        <span>📤</span> Upload File Baru
-      </div>
+      <div class="admin-card-header"><span data-i18n="upload_title"></span></div>
       <div class="admin-form">
         <div class="form-group">
-          <label>Judul File</label>
-          <input type="text" id="fileTitle" class="pw-input" placeholder="Contoh: Tools Reverse Engineering v2.0" style="width:100%">
+          <label data-i18n="file_title_label"></label>
+          <input type="text" id="fileTitle" class="pw-input" data-i18n="file_title_placeholder" style="width:100%">
         </div>
         <div class="form-group">
-          <label>Password untuk File Ini</label>
+          <label data-i18n="file_pw_label"></label>
           <div class="pw-input-wrap">
-            <input type="password" id="filePw" class="pw-input" placeholder="Buat password unik..." style="flex:1">
+            <input type="password" id="filePw" class="pw-input" data-i18n="file_pw_placeholder" style="flex:1">
             <button class="pw-toggle" onclick="toggleFilePw()">👁</button>
           </div>
-          <small style="color:var(--text-muted)">Password ini yang kamu sebut di video YouTube</small>
+          <small style="color:var(--text-muted)" data-i18n="file_pw_hint"></small>
         </div>
         <div class="form-group">
-          <label>Upload File</label>
+          <label data-i18n="file_upload_label"></label>
           <div class="file-drop" id="fileDrop" onclick="document.getElementById('fileInput').click()">
             <div class="drop-icon">📁</div>
-            <div class="drop-text" id="dropText">Klik atau drag file ke sini</div>
-            <div class="drop-sub">Semua format didukung</div>
+            <div class="drop-text" id="dropText" data-i18n="drop_text"></div>
+            <div class="drop-sub" data-i18n="drop_sub"></div>
           </div>
           <input type="file" id="fileInput" style="display:none" onchange="handleFile(this)">
         </div>
-
         <div id="uploadProgress" style="display:none">
           <div class="timer-bar"><div class="timer-fill" id="uploadFill" style="width:0%"></div></div>
-          <span class="timer-text" id="uploadText">Uploading...</span>
+          <span class="timer-text" id="uploadText"></span>
         </div>
         <div id="uploadMsg" style="display:none"></div>
-
         <button class="btn-download" id="uploadBtn" onclick="uploadFile()" style="margin-top:1rem">
-          <span>📤</span> Upload & Simpan
+          <span data-i18n="upload_btn"></span>
         </button>
       </div>
     </div>
-
-    <!-- File List -->
     <div class="admin-card">
       <div class="admin-card-header" style="display:flex;justify-content:space-between;align-items:center">
-        <span><span>📋</span> Daftar File</span>
-        <button onclick="loadFiles()" style="background:transparent;border:1px solid var(--border);color:var(--text-muted);padding:.3rem .8rem;border-radius:6px;cursor:pointer;font-size:.8rem;font-family:inherit">🔄 Refresh</button>
+        <span data-i18n="file_list_title"></span>
+        <button onclick="loadFiles()" style="background:transparent;border:1px solid var(--border);color:var(--text-muted);padding:.3rem .8rem;border-radius:6px;cursor:pointer;font-size:.8rem;font-family:inherit" data-i18n="refresh"></button>
       </div>
-      <div id="fileList" class="file-list">
-        <div style="text-align:center;padding:2rem;color:var(--text-muted)">Memuat file...</div>
-      </div>
+      <div id="fileList" class="file-list"></div>
     </div>
-
   </div>
 </div>
-
-<!-- Delete confirm modal -->
 <div id="deleteModal" class="warn-overlay" style="display:none">
   <div class="warn-box">
     <div class="warn-icon">🗑️</div>
-    <h2>Hapus File?</h2>
+    <h2 data-i18n="delete_confirm_title"></h2>
     <p id="deleteTitle" style="color:var(--text-muted);font-size:.9rem"></p>
     <div style="display:flex;gap:1rem;margin-top:1.5rem">
-      <button onclick="confirmDelete()" style="flex:1;background:rgba(220,38,38,.2);border:1px solid var(--red);color:var(--red);padding:.7rem;border-radius:8px;cursor:pointer;font-family:inherit">Hapus</button>
-      <button onclick="document.getElementById('deleteModal').style.display='none'" style="flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text);padding:.7rem;border-radius:8px;cursor:pointer;font-family:inherit">Batal</button>
+      <button onclick="confirmDelete()" style="flex:1;background:rgba(220,38,38,.2);border:1px solid var(--red);color:var(--red);padding:.7rem;border-radius:8px;cursor:pointer;font-family:inherit" data-i18n="delete_confirm"></button>
+      <button onclick="document.getElementById('deleteModal').style.display='none'" style="flex:1;background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text);padding:.7rem;border-radius:8px;cursor:pointer;font-family:inherit" data-i18n="delete_cancel"></button>
     </div>
   </div>
 </div>
-
-<script>
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('keydown', e => {
-  if (e.key === 'F12' || (e.ctrlKey && ['u','s','i'].includes(e.key.toLowerCase())) || (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))) {
-    e.preventDefault(); return false;
-  }
-});
-document.getElementById('adminPw').addEventListener('keypress', e => { if (e.key === 'Enter') adminLogin(); });
-</script>
 <script src="assets/app.js"></script>
 </body>
 </html>

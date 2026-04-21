@@ -9,15 +9,9 @@
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<!-- Particle canvas -->
 <canvas id="particles"></canvas>
-
-<!-- Scanline overlay -->
 <div class="scanlines"></div>
-
-<div class="page-wrapper" id="mainPage">
-
-  <!-- HEADER -->
+<div class="page-wrapper">
   <header class="site-header">
     <div class="logo-wrap">
       <span class="logo-icon">⬡</span>
@@ -25,92 +19,60 @@
     </div>
     <div class="header-badge">SECURE VAULT</div>
   </header>
-
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-glow"></div>
     <div class="hero-content">
-      <div class="step-badge">LANGKAH 1 DARI 2</div>
+      <div class="step-badge" data-i18n="step1"></div>
       <h1 class="hero-title">
-        AKSES <span class="red-glow">EKSKLUSIF</span><br>
-        KONTEN <span class="blue-glow">VAULT</span>
+        EXCLUSIVE <span class="red-glow">ACCESS</span><br>
+        CONTENT <span class="blue-glow">VAULT</span>
       </h1>
-      <p class="hero-desc">
-        Konten ini hanya untuk subscriber channel <strong>ExeRevers</strong>.<br>
-        Subscribe & password ada di dalam video YouTube.
-      </p>
-
-      <!-- Subscribe Section -->
+      <p class="hero-desc" data-i18n="hero_desc"></p>
       <div class="subscribe-box">
         <div class="sub-header">
           <div class="pulse-dot"></div>
-          VERIFIKASI SUBSCRIBER
+          <span data-i18n="verify_label"></span>
         </div>
-        <p class="sub-desc">Klik tombol di bawah untuk subscribe ke channel ExeRevers, lalu klik <strong>"Saya Sudah Subscribe"</strong></p>
-
+        <p class="sub-desc" data-i18n="verify_desc"></p>
         <a href="https://youtube.com/@exerevers?si=ewbTDfc8mxH0znW6" target="_blank" class="btn-youtube" id="subBtn">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          Subscribe ExeRevers
+          <span data-i18n="btn_sub"></span>
         </a>
-
         <button class="btn-verified" id="verifiedBtn" disabled onclick="goToPassword()">
           <span class="lock-icon">🔒</span>
-          Saya Sudah Subscribe — Lanjut ke Password
+          <span data-i18n="btn_verified"></span>
         </button>
-
         <div class="timer-wrap" id="timerWrap" style="display:none">
           <div class="timer-bar"><div class="timer-fill" id="timerFill"></div></div>
-          <span class="timer-text" id="timerText">Menunggu 5 detik...</span>
+          <span class="timer-text" id="timerText"></span>
         </div>
       </div>
-
-      <!-- Info cards -->
       <div class="info-cards">
         <div class="info-card">
           <div class="card-icon">📺</div>
           <div class="card-text">
-            <strong>Tonton Video</strong>
-            <span>Password ada di dalam video YouTube</span>
+            <strong data-i18n="card1_title"></strong>
+            <span data-i18n="card1_desc"></span>
           </div>
         </div>
         <div class="info-card">
           <div class="card-icon">🔑</div>
           <div class="card-text">
-            <strong>Masukkan Password</strong>
-            <span>Password = akses ke file eksklusif</span>
+            <strong data-i18n="card2_title"></strong>
+            <span data-i18n="card2_desc"></span>
           </div>
         </div>
         <div class="info-card">
           <div class="card-icon">⬇️</div>
           <div class="card-text">
-            <strong>Download</strong>
-            <span>File langsung tersedia</span>
+            <strong data-i18n="card3_title"></strong>
+            <span data-i18n="card3_desc"></span>
           </div>
         </div>
       </div>
     </div>
   </section>
-
 </div>
-
-<!-- Protect -->
-<script>
-// Anti inspect / view-source minimal
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('keydown', e => {
-  if (e.key === 'F12' || (e.ctrlKey && ['u','s','i'].includes(e.key.toLowerCase())) || (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))) {
-    e.preventDefault();
-    showWarn();
-    return false;
-  }
-});
-function showWarn() {
-  const w = document.createElement('div');
-  w.className = 'warn-overlay';
-  w.innerHTML = '<div class="warn-box"><div class="warn-icon">⚠️</div><h2>AKSES DITOLAK</h2><p>Developer tools tidak diizinkan di platform ini.</p><button onclick="this.parentElement.parentElement.remove()">Tutup</button></div>';
-  document.body.appendChild(w);
-}
-</script>
 <script src="assets/app.js"></script>
 </body>
 </html>

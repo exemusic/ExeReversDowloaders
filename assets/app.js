@@ -8,7 +8,7 @@ var CFG = {
   supa_anon: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpYmpkYWZheHRxdXNoeW5kYXJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3NTkyNDYsImV4cCI6MjA5MjMzNTI0Nn0.vgrXMx_8leB2cu1H29UcU-TGBoajy07Ky-N-76wdEnM',
   supa_service: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpYmpkYWZheHRxdXNoeW5kYXJoIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3Njc1OTI0NiwiZXhwIjoyMDkyMzM1MjQ2fQ.wraRotDIEeRX5L9LnA37nERA2rkDaoQYeOBCxgoUbUg',
   bucket: 'files',
-  admin_pw: 'ExeReversAdmin2024!', // GANTI PASSWORD ADMIN INI
+  admin_pw: 'admin!', // GANTI PASSWORD ADMIN INI
   yt_channel: 'https://youtube.com/@exerevers?si=ewbTDfc8mxH0znW6',
   sub_wait: 5000 // ms setelah klik subscribe sebelum tombol verified aktif
 };

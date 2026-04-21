@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masukkan Password — ExeReversDowloaders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="scanlines"></div>
+
+<div class="page-wrapper">
+  <header class="site-header">
+    <div class="logo-wrap">
+      <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:10px">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">ExeRevers<span class="accent">DL</span></span>
+      </a>
+    </div>
+    <div class="header-badge">SECURE VAULT</div>
+  </header>
+
+  <section class="hero" style="padding-top:60px">
+    <div class="hero-glow"></div>
+    <div class="hero-content" style="max-width:560px">
+      <div class="step-badge">LANGKAH 2 DARI 2</div>
+      <h1 class="hero-title" style="font-size:clamp(1.8rem,4vw,2.8rem)">
+        MASUKKAN <span class="red-glow">PASSWORD</span>
+      </h1>
+      <p class="hero-desc">Password tersedia di dalam video YouTube ExeRevers.</p>
+
+      <div class="subscribe-box" style="padding:2rem">
+        <div class="sub-header">
+          <div class="pulse-dot"></div>
+          VAULT ACCESS
+        </div>
+
+        <div class="pw-input-wrap">
+          <input type="password" id="pwInput" class="pw-input" placeholder="Masukkan password..." maxlength="64" autocomplete="off" spellcheck="false">
+          <button class="pw-toggle" onclick="togglePw()" title="Tampilkan/sembunyikan">👁</button>
+        </div>
+
+        <div id="pwError" class="pw-error" style="display:none">
+          <span>❌</span> Password salah atau tidak ditemukan.
+        </div>
+        <div id="pwLoading" class="pw-loading" style="display:none">
+          <div class="spinner"></div> Memverifikasi...
+        </div>
+
+        <button class="btn-verified" style="margin-top:1rem;opacity:1;cursor:pointer" onclick="checkPassword()">
+          <span>🔓</span> Verifikasi Password
+        </button>
+
+        <p style="margin-top:1.2rem;font-size:.8rem;color:var(--text-muted);text-align:center">
+          Belum dapat password? <a href="https://youtube.com/@exerevers?si=ewbTDfc8mxH0znW6" target="_blank" style="color:var(--red)">Tonton video</a>
+        </p>
+      </div>
+
+      <!-- attempt warning -->
+      <div id="attemptWarn" class="attempt-warn" style="display:none"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if (e.key === 'F12' || (e.ctrlKey && ['u','s','i'].includes(e.key.toLowerCase())) || (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))) {
+    e.preventDefault(); return false;
+  }
+});
+document.getElementById('pwInput').addEventListener('keypress', e => {
+  if (e.key === 'Enter') checkPassword();
+});
+</script>
+<script src="assets/app.js"></script>
+</body>
+</html>
